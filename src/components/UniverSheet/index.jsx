@@ -1,29 +1,28 @@
 import './index.css';
 
-import { Univer, Tools, LocaleType, UniverInstanceType } from '@univerjs/core';
+import { LocaleType, Tools, Univer, UniverInstanceType } from '@univerjs/core';
 import { defaultTheme } from '@univerjs/design';
+import DesignZhCN from '@univerjs/design/locale/zh-CN';
 import { UniverDocsPlugin } from '@univerjs/docs';
 import { UniverDocsUIPlugin } from '@univerjs/docs-ui';
+import DocsUIZhCN from '@univerjs/docs-ui/locale/zh-CN';
 import { UniverFormulaEnginePlugin } from '@univerjs/engine-formula';
 import { UniverRenderEnginePlugin } from '@univerjs/engine-render';
 import { UniverSheetsPlugin } from '@univerjs/sheets';
 import { UniverSheetsFormulaPlugin } from '@univerjs/sheets-formula';
 import { UniverSheetsUIPlugin } from '@univerjs/sheets-ui';
-import { UniverUIPlugin } from '@univerjs/ui';
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
-import { UniverSheetsCustomMenuPlugin } from '../../plugin'
-import DesignZhCN from '@univerjs/design/locale/zh-CN';
-import UIZhCN from '@univerjs/ui/locale/zh-CN';
-import DocsUIZhCN from '@univerjs/docs-ui/locale/zh-CN';
-import SheetsZhCN from '@univerjs/sheets/locale/zh-CN';
 import SheetsUIZhCN from '@univerjs/sheets-ui/locale/zh-CN';
+import SheetsZhCN from '@univerjs/sheets/locale/zh-CN';
+import { UniverUIPlugin } from '@univerjs/ui';
+import UIZhCN from '@univerjs/ui/locale/zh-CN';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import { UniverSheetsCustomMenuPlugin } from '../../plugin';
 
-import "@univerjs/design/lib/index.css";
-import "@univerjs/ui/lib/index.css";
-import "@univerjs/docs-ui/lib/index.css";
-import "@univerjs/sheets-ui/lib/index.css";
-import "@univerjs/sheets-formula/lib/index.css";
-
+import '@univerjs/design/lib/index.css';
+import '@univerjs/docs-ui/lib/index.css';
+import '@univerjs/sheets-formula/lib/index.css';
+import '@univerjs/sheets-ui/lib/index.css';
+import '@univerjs/ui/lib/index.css';
 
 // eslint-disable-next-line react/display-name
 const UniverSheet = forwardRef(({ data }, ref) => {
@@ -78,12 +77,14 @@ const UniverSheet = forwardRef(({ data }, ref) => {
     univer.registerPlugin(UniverSheetsUIPlugin);
     univer.registerPlugin(UniverSheetsFormulaPlugin);
 
-
     // TODO 无法载入LocaleService
-    // univer.registerPlugin(UniverSheetsCustomMenuPlugin);
+    univer.registerPlugin(UniverSheetsCustomMenuPlugin);
 
     // create workbook instance
-    workbookRef.current = univer.createUnit(UniverInstanceType.UNIVER_SHEET, data);
+    workbookRef.current = univer.createUnit(
+      UniverInstanceType.UNIVER_SHEET,
+      data,
+    );
   };
 
   /**
